@@ -16,7 +16,7 @@ module.exports.displayContactList = (req, res, next) => {
         {
             res.render('business-contact/list', {title: 'Business Contact List', ContactList: contactList, displayName: req.user ? req.user.displayName : ''});
         }
-    })
+    }).sort({"name":1});
 }
 
 // controller for displaying Add contact page
