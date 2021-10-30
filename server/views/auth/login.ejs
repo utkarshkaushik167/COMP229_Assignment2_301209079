@@ -1,0 +1,60 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+<div style="width:100vw; overflow:hidden;">
+    <!-- Message Area -->
+    <% if(messages.length > 0) {%>
+        <div class="alert alert-danger">
+            <%= messages %>
+        </div>
+    <% } %>
+
+    <div
+    style="
+    display: flex;
+    
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(blue, purple);
+    color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    overflow-y: scroll;
+  ">
+        <div class="offset-md-4 col-md-4">
+            <h1>Please Login</h1><br>
+            <form method="POST" autocomplete="off">
+                <fieldset class="form-group">
+                    <label for="username" class="lefttext">Username: </label>
+                    <input type="text" class="form-control"
+                    name="username" placeholder="Enter username"
+                    id="username" required autofocus>
+                </fieldset>
+                <br>
+                <fieldset class="form-group">
+                    <label for="password" class="lefttext">Password: </label>
+                    <input type="password" class="form-control"
+                    name="password" placeholder="Enter password"
+                    id="password" required>
+                    or
+                    <a href="/register">Register Here</a>
+                </fieldset>
+                <br>
+                <fieldset class="form-group text-right">
+                    <input type="submit" class="btn btn-success" value="Login">
+                    <a href="/">
+                        <input type="button" class="btn btn-danger" value="Cancel">
+                    </a>
+                </fieldset>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<%- include ../partials/bottom_nav.ejs %>  
+
+<%- include ../partials/footer.ejs %>

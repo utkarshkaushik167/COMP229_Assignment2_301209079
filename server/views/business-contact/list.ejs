@@ -1,0 +1,75 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+  <!-- Content for displaying contact list -->
+  <div style="width:100vw; overflow:hidden;">
+    
+        <div 
+        style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(blue, purple);
+        color: white;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        overflow-y: scroll;
+      ">
+            <h1><%= title %></h1>
+
+            <% if(typeof displayName == 'string' && displayName) { %>
+                <a href="/business-contact-list/add" class="btn btn-success" role="button">
+                <i class="fas fa-plus-circle"></i> Add New Contact</a>
+            <% } %>
+            <br><br>
+            <table class="table table-bordered table-striped table-hover" style="width:60%;">
+                <!-- Header Row-->
+                <tr class="d-flex">
+                <% if(typeof displayName == 'string' && displayName) { %>
+                    <th class="text-center col-3 text-white text-bold " style="text-decoration: underline;">Name</th>
+                    <th class="text-center col-3 text-white text-bold " style="text-decoration: underline;">Phone Number</th>
+                    <th class="text-center col-4 text-white text-bold " style="text-decoration: underline;">Email Address</th>
+                    <th class="text-center col-1"></th>
+                    <th class="text-center col-1"></th>
+                <% } else { %>
+                    <th class="text-center col-4 text-white text-bold " style="text-decoration: underline;">Name</th>
+                    <th class="text-center col-4 text-white text-bold " style="text-decoration: underline;">Phone Number</th>
+                    <th class="text-center col-4 text-white text-bold " style="text-decoration: underline;">Email Address</th>
+                <% } %>
+                </tr>
+
+                <!-- Repeatable Template Row -->
+
+                <% for(let count = 0; count < ContactList.length; count++) { %>
+                    <tr class="d-flex">
+                    <% if(typeof displayName == 'string' && displayName) { %>
+                        <td class="text-center col-3 text-white"><%= ContactList[count].name %></td>
+                        <td class="text-center col-3 text-white"><%= ContactList[count].number %></td>
+                        <td class="text-center col-4 text-white"><%= ContactList[count].email %></td>
+                        <td class="text-center col-1">
+                            <a href="/business-contact-list/edit/<%= ContactList[count]._id %>" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i> Edit</a>
+                        </td>
+                        <td class="text-center col-1">
+                            <a href="/business-contact-list/delete/<%= ContactList[count]._id %>" class="btn btn-danger btn-sm delete-button">
+                            <i class="fas fa-trash-alt"></i> Delete</a>
+                        </td>
+                    <% } else { %>
+                        <td class="text-center col-4"><%= ContactList[count].name %></td>
+                        <td class="text-center col-4"><%= ContactList[count].number %></td>
+                        <td class="text-center col-4"><%= ContactList[count].email %></td>
+                    <% } %>
+                    </tr>
+                <% } %>
+            </table>
+        </div>
+    
+</div>
+
+<%- include ../partials/bottom_nav.ejs %>
+
+<%- include ../partials/footer.ejs %>
